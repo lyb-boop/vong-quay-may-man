@@ -53,8 +53,11 @@
           </div>
 
           <div class="text-center">
-            <button class="btn btn-primary" @click="slices.push({ color: getRandomColor(), text: 'New Slice' })">Add
-              Slice
+            <button class="btn btn-primary" @click="slices.push({ color: getRandomColor(), text: 'New Slice' })" :disabled="isSpinning">
+              <span class="spinner-border spinner-border-sm me-2" v-if="isSpinning" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </span>
+              Add Slice
             </button>
           </div>
 
