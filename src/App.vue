@@ -43,7 +43,12 @@
                 <input v-model="slice.color" class="form-control form-control-color border-0" type="color">
               </div>
               <input v-model="slice.text" class="form-control" type="text">
-              <button class="btn btn-danger" @click="slices.splice(index, 1)" :disabled="isSpinning">Remove</button>
+              <button class="btn btn-danger" @click="slices.splice(index, 1)" :disabled="isSpinning">
+                <span class="spinner-border spinner-border-sm me-2" v-if="isSpinning" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </span>
+                Remove
+              </button>
             </div>
           </div>
 
