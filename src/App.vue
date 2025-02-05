@@ -4,155 +4,26 @@
 
     <div class="row align-content-start justify-content-around">
 
-      <div class="col-12 text-center text-lg-start">
-        <h1 class="mb-4 mb-lg-5">🎡 Vue Wheel Spinner</h1>
+      <div class="col-12 text-lg-start">
+        <h1 class="mb-4 mb-lg-5 text-center">🎡 VÒNG QUAY MAY MẮN 🎡</h1>
       </div>
 
-      <div class="col-12 col-lg-5 order-1 order-lg-0 mt-5">
-
-        <fieldset class="mb-4">
-
-          <legend>Play</legend>
-
-          <div class="mb-3">
-            <label for="win_option" class="form-label">Select Winner</label>
-            <div class="input-group">
-              <select v-model="defaultWinner" id="win_option" :disabled="isSpinning" class="form-select">
-                <option v-for="(slice, index) in slices" :value="index">
-                  {{ slice.text }}
-                </option>
-              </select>
-              <button class="btn btn-success px-4" :disabled="isSpinning" @click="spinFor(defaultWinner)">
-                <span class="spinner-border spinner-border-sm me-2" v-if="isSpinning" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </span>
-                Spin
-              </button>
-            </div>
-          </div>
-
-        </fieldset>
-
-        <fieldset class="mb-4">
-
-          <legend>Slices</legend>
-
-          <div class="mb-3" v-for="(slice, index) in slices">
-            <div class="input-group">
-              <div class="input-group-text p-0">
-                <input v-model="slice.color" class="form-control form-control-color border-0" type="color">
-              </div>
-              <input v-model="slice.text" class="form-control" type="text">
-              <button class="btn btn-danger" @click="slices.splice(index, 1)" :disabled="isSpinning">
-                <span class="spinner-border spinner-border-sm me-2" v-if="isSpinning" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </span>
-                Remove
-              </button>
-            </div>
-          </div>
-
-          <div class="text-center">
-            <button class="btn btn-primary" @click="slices.push({ color: getRandomColor(), text: 'New Slice' })" :disabled="isSpinning">
-              <span class="spinner-border spinner-border-sm me-2" v-if="isSpinning" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </span>
-              Add Slice
-            </button>
-          </div>
-
-        </fieldset>
-
-        <fieldset class="mb-4">
-
-          <legend>Cursor</legend>
-
-          <div class="row mb-3">
-            <div class="col-6">
-              <label for="cursor_angle" class="form-label">Cursor Angle</label>
-              <div class="input-group">
-                <input v-model="cursorAngle" id="cursor_angle" class="form-control" type="number" max="360" min="0">
-                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                  <span class="visually-hidden">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li v-for="angle in [0, 45, 90, 135, 180, 225, 270, 315, 360]">
-                    <div class="dropdown-item cursor-pointer" @click="cursorAngle = angle">{{ angle }} deg</div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-6">
-              <label for="cursor_distance" class="form-label">Cursor Distance</label>
-              <input v-model="cursorDistance" id="cursor_distance" class="form-control" type="number">
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="cursor_position" class="form-label">Cursor Position</label>
-            <select v-model="cursorPosition" id="cursor_position" @change="handleCursorPositionChange" class="form-select">
-              <option value="edge">Edge</option>
-              <option value="center">Center</option>
-            </select>
-          </div>
-
-        </fieldset>
-
-        <fieldset class="mb-4">
-
-          <legend>Shining Dots</legend>
-
-          <div class="alert alert-info" role="alert">
-            Shining dots is not a part of the vue-wheel-spinner component. It's a separate component which built in this demo.
-            You can create different external ornaments like this.
-          </div>
-
-          <div class="row mb-3">
-            <label for="shining_dots_border_color" class="form-label">Border Color / Width</label>
-            <div class="input-group">
-              <div class="input-group-text p-0">
-                <input v-model="shiningDotsBorderColor" id="shining_dots_border_color"
-                       class="form-control form-control-color border-0" type="color">
-              </div>
-              <input v-model="shiningDotsBorderWidth" id="shining_dots_border_width" class="form-control" type="number">
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="shining_dots_color" class="form-label">Dot Color / Size / Count / Shine Color</label>
-            <div class="input-group">
-              <div class="input-group-text p-0">
-                <input v-model="shiningDotsColor" id="shining_dots_color"
-                       class="form-control form-control-color border-0"
-                       type="color">
-              </div>
-              <input v-model="shiningDotsSize" id="shining_dots_size" class="form-control" type="number">
-              <input v-model="shiningDotsCount" id="shining_dots_count" class="form-control" type="number">
-              <div class="input-group-text p-0">
-                <input v-model="shiningDotsShineColor" id="shining_dots_shine_color"
-                       class="form-control form-control-color border-0"
-                       type="color">
-              </div>
-            </div>
-          </div>
-
-        </fieldset>
-
+      <div class="col-12 col-lg-1 order-1 order-lg-0 mt-5">
       </div>
 
-      <div class="col-12 col-lg-7 px-lg-5 order-0 order-lg-1">
+      <div class="col-12 col-lg-10 px-lg-5 order-0 order-lg-1">
 
         <div class="sticky-top">
 
           <div class="fs-2 text-center">
             <div v-if="winnerResult">
-              Winner: <span>{{ winnerResult.text }}</span> 🎉
+              Chúc mừng bạn đã về với đội: <span :style="{ color: winnerResult.color, fontWeight: 'bold' }">{{ winnerResult.text }} </span> 🎉
             </div>
             <div v-else-if="isSpinning">
-              Spinning...
+              Đang quay...
             </div>
             <div v-else>
-              Ready to spin?
+              Bạn đã sẵn sàng quay chưa?
             </div>
           </div>
 
@@ -168,6 +39,7 @@
                 ref="spinner"
                 :slices="slices"
                 :winner-index="defaultWinner"
+                :spin-duration="spinDuration"
                 :sounds="sounds"
                 :cursor-angle="cursorAngle"
                 :cursor-position="cursorPosition"
@@ -186,7 +58,7 @@
                     @click="handleSpinButtonClick"
                     @mouseover="handleSpinButtonHover"
                     @mouseleave="handleSpinButtonLeave">
-                  Spin
+                  QUAY
                 </button>
               </template>
 
@@ -202,12 +74,15 @@
                 <span class="spinner-border spinner-border-sm me-2" v-if="isSpinning" role="status">
                   <span class="visually-hidden">Loading...</span>
                 </span>
-              Spin for Random
+              Bắt đầu quay
             </button>
           </div>
 
         </div>
 
+      </div>
+
+      <div class="col-12 col-lg-1 order-1 order-lg-1 mt-5">
       </div>
 
     </div>
@@ -236,9 +111,10 @@ export default {
   data() {
     return {
       winnerResult: null,
-      slices: this.createColorTextArray(8),
+      slices: this.createSpiningData(),
       isSpinning: false,
       defaultWinner: 0,
+      spinDuration:6000,
       sounds: {
         won: wonSound,
         spinButtonClick: clickSound,
@@ -273,19 +149,32 @@ export default {
     getRandomColor() {
       return '#' + Math.floor(Math.random() * 16777215).toString(16);
     },
-    createColorTextArray(count) {
-      const result = [];
-      const colors = [
-        '#eb4d4b',
-        '#ffffff',
-      ];  // Predefined colors
-      for (let i = 1; i <= count; i++) {
-        result.push({
-          color: colors[i % colors.length],  // Alternate colors
-          text: 'Slice ' + i,        // Convert number to string
-        });
-      }
-      return result;
+    createSpiningData(){
+      return [
+        {color: this.getRandomColor(), text:"PC01"},
+        {color: this.getRandomColor(), text:"PC02"},
+        {color: this.getRandomColor(), text:"PC03"},
+        {color: this.getRandomColor(), text:"PC04"},
+        {color: this.getRandomColor(), text:"PC06"},
+        {color: this.getRandomColor(), text:"PC07"},
+        {color: this.getRandomColor(), text:"PC08"},
+        {color: this.getRandomColor(), text:"PC09"},
+        {color: this.getRandomColor(), text:"PC10"},
+        {color: this.getRandomColor(), text:"PC11"},
+        {color: this.getRandomColor(), text:"PV01"},
+        {color: this.getRandomColor(), text:"PX01"},
+        {color: this.getRandomColor(), text:"PX03"},
+        {color: this.getRandomColor(), text:"PX05"},
+        {color: this.getRandomColor(), text:"PA01"},
+        {color: this.getRandomColor(), text:"PA02"},
+        {color: this.getRandomColor(), text:"PA03"},
+        {color: this.getRandomColor(), text:"PA04"},
+        {color: this.getRandomColor(), text:"PA06"},
+        {color: this.getRandomColor(), text:"PA09"},
+        {color: this.getRandomColor(), text:"Công an Xã"},
+        {color: this.getRandomColor(), text:"Công an Phường"},
+        {color: this.getRandomColor(), text:"Công an thị trấn"},
+      ]
     },
     playAudio(audio) {
       if (audio) {
@@ -297,7 +186,7 @@ export default {
       if (this.buttonClickAudio) {
         this.playAudio(this.buttonClickAudio)
       }
-      this.$refs.spinner.spinWheel(this.defaultWinner);
+      this.spinRandom();
     },
     handleSpinButtonHover() {
       if (this.buttonHoverAudio) {
